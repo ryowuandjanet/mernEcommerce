@@ -232,6 +232,11 @@ app.post("/addtocart", fetchUser, async (req, res) => {
   res.send("Added");
 });
 
+app.post("/getcart", fetchUser, async (req, res) => {
+  let userdata = await Users.findOne({ _id: req.user.id });
+  res.json(userdata.cartData);
+});
+
 app.listen(port, (error) => {
   if (!error) {
     console.log("Server Running on Port 4000");
